@@ -29,6 +29,20 @@ var detectNetwork = function(cardNumber) {
     }
   }
 
+  if (cardNumber.slice(0, 1) === '4') {
+    if (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19) {
+      return 'Visa';
+    }
+  }
+
+  for (var a = 51; a < 56; a++) {
+    if (cardNumber.slice(0, 2) === a.toString() ) {
+      if (cardNumber.length === 16) {
+        return 'MasterCard';
+      }
+    }
+  }
+
 };
 
 
