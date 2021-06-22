@@ -43,6 +43,15 @@ var detectNetwork = function(cardNumber) {
     }
   }
 
+
+  if (cardNumber.slice(0, 4) === '6011') {
+    if (cardNumber.length === 16 || cardNumber.length === 19) {
+      return 'Discover';
+    }
+  }
+
+
+
 };
 
 

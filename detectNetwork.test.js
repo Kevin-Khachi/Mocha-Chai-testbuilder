@@ -81,7 +81,7 @@ describe('Visa', function() {
   // Search the documentation to figure out how to access it.
 
   //   http://chaijs.com/
-  var assert = chai.assert;
+  var assert = chai.assert; //accesed object value
 
   it('has a prefix of 4 and a length of 13', function() {
     assert(detectNetwork('4123456789012') === 'Visa');
@@ -103,13 +103,13 @@ describe('MasterCard', function() {
   //   http://chaijs.com/api/bdd/
   var expect = chai.expect;
 
-  it(FILL_ME_IN, function() {
+  it('Prefix of 51', function() { //Added string arguemnt
     expect(detectNetwork('5112345678901234')).to.equal('MasterCard');
   });
-  it(FILL_ME_IN, function() {
+  it('Prefix of 52', function() { //Added string arguemnt
     expect(detectNetwork('5212345678901234')).to.equal('MasterCard');
   });
-  it(FILL_ME_IN, function() {
+  it('Prefix of 53', function() { //Added string arguemnt
     expect(detectNetwork('5312345678901234')).to.equal('MasterCard');
   });
 
@@ -123,22 +123,32 @@ describe('MasterCard', function() {
   var should = chai.should();
 
   it('has a prefix of 54 and a length of 16', function() {
-    detectNetwork('5412345678901234').should.equal(FILL_ME_IN);
+    detectNetwork('5412345678901234').should.equal('MasterCard'); //argument updated to 'MasterCard'
   });
   it('has a prefix of 55 and a length of 16', function() {
-    detectNetwork('5512345678901234').should.equal(FILL_ME_IN);
+    detectNetwork('5512345678901234').should.equal('MasterCard'); //argument updated to 'MasterCard'
   });
 });
 
 describe('Discover', function() {
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
-  it('has a prefix of 6011 and a length of 16');
-  it('has a prefix of 6011 and a length of 19');
+
+
+  //created the
+  var assert = chai.assert;
+
+  it('has a prefix of 6011 and a length of 16', function() {
+    assert(detectNetwork('6011567890123456') === 'Discover');
+  });
+
+  it('has a prefix of 6011 and a length of 19', function () {
+    assert(detectNetwork('6011567890123456789') === 'Discover');
+  });
 });
 
 describe('Maestro', function() {
-  // Write full test coverage for the Maestro card
+
 });
 
 
