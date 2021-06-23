@@ -44,14 +44,67 @@ var detectNetwork = function(cardNumber) {
   }
 
 
-  if (cardNumber.slice(0, 4) === '6011') {
+  /*
+  Discover always has a prefix of 6011, 644-649, or 65, and a length of 16 or 19.
+  Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
+  */
+
+  if (cardNumber.slice(0, 4) === '6011' || cardNumber.slice(0, 2) === '65') {
     if (cardNumber.length === 16 || cardNumber.length === 19) {
       return 'Discover';
     }
   }
 
+  var disPrefix = 644;
+
+  for (disPrefix; disPrefix < 650; disPrefix++) {
+
+    if (cardNumber.slice(0, 3) === disPrefix.toString()) {
+
+      if (cardNumber.length === 16 || cardNumber.length === 19) {
+
+        return 'Discover';
+
+      }
+
+    }
+
+  }
+
+
+  //Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
+
+  var prefixes = ['5018', '5020', '5038', '6304'];
+
+  for (var preIndex = 0; preIndex < 4; preIndex++) {
+
+    if (cardNumber.slice(0, 4) === prefixes[preIndex]) {
+
+      for (var length = 12; length < 20; length++) {
+
+        if (cardNumber.length === length) {
+
+          return 'Maestro';
+
+        }
+
+      }
+
+    }
+
+  }
+
+
+
 
 
 };
+
+
+
+
+
+
+
 
 

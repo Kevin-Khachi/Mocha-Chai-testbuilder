@@ -104,13 +104,13 @@ describe('MasterCard', function() {
   var expect = chai.expect;
 
   it('Prefix of 51', function() { //Added string arguemnt
-    expect(detectNetwork('5112345678901234')).to.equal('MasterCard');
+    detectNetwork('5112345678901234').should.equal('MasterCard');
   });
   it('Prefix of 52', function() { //Added string arguemnt
-    expect(detectNetwork('5212345678901234')).to.equal('MasterCard');
+    detectNetwork('5212345678901234').should.equal('MasterCard');
   });
   it('Prefix of 53', function() { //Added string arguemnt
-    expect(detectNetwork('5312345678901234')).to.equal('MasterCard');
+    detectNetwork('5312345678901234').should.equal('MasterCard');
   });
 
   // You can also use should instead of expect, which changes the style
@@ -134,9 +134,11 @@ describe('Discover', function() {
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
 
+   /*
+  Discover always has a prefix of 6011, 644-649, or 65, and a length of 16 or 19.
+  */
 
-  //created the
-  var assert = chai.assert;
+  var assert = chai.assert; // defined assert
 
   it('has a prefix of 6011 and a length of 16', function() {
     assert(detectNetwork('6011567890123456') === 'Discover');
@@ -145,9 +147,70 @@ describe('Discover', function() {
   it('has a prefix of 6011 and a length of 19', function () {
     assert(detectNetwork('6011567890123456789') === 'Discover');
   });
+
+  it('has a prefix of 65 and a length 16', function() {
+    assert(detectNetwork('6511567890123456') === 'Discover');
+  });
+
+  it('has a prefix of 65 and a length 19', function() {
+    assert(detectNetwork('6511567890123456789') === 'Discover');
+  });
+
+
+  for (var prefix = 644; prefix < 650; prefix++) {
+
+    (function(currentPrefix) {
+
+      var ccnLength = currentPrefix + '4567890123456789';
+      currentPrefix = currentPrefix + '4567890123456';
+
+      it('has a prefix of ' + currentPrefix.slice(0, 3) + ' and a length of 16', function() {
+
+        assert(detectNetwork(currentPrefix) === 'Discover');
+
+      });
+
+      it('has a prefix of ' + ccnLength.slice(0, 3) + ' and a length of 19', function() {
+
+        assert(detectNetwork(ccnLength) === 'Discover');
+
+      });
+
+    })(prefix);
+
+  }
+
 });
 
 describe('Maestro', function() {
+
+  //Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
+
+  var assert = chai.assert; //defined assert
+
+  var prefixes = ['5018', '5020', '5038', '6304'];
+
+  for (var a = 0; a < prefixes.length; a++) {
+
+    var ccn = prefixes[a] + '5678901';
+
+    for (var lengths = 12; lengths <= 19; lengths++) {
+
+      ccn += '1';
+
+      (function(testPrefix, testLength) {
+
+        it ('has a prefix of ' + testPrefix + ' and a length of ' + testLength, function() {
+
+          assert(detectNetwork(ccn) === 'Maestro');
+
+        });
+
+      })(prefixes[a], lengths);
+
+    }
+
+  }
 
 });
 
