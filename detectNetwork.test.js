@@ -214,4 +214,33 @@ describe('Maestro', function() {
 
 });
 
+describe('China Union Pay', function() {
+
+  /*
+  always has a prefix of 622126-622925, 624-626,
+  or 6282-6288 and a length of 16-19.
+  */
+
+  var assert = chai.assert;
+
+  for (var prefix = 622126; prefix <= 622925; prefix++) {
+
+    for (var pre2 = 624; pre2 <= 626; pre2++) {
+
+      for (var pre3 = 6282; pre2 <= 6288; pre3++) {
+
+        (function() {
+
+
+
+        })();
+
+      }
+
+    }
+
+  }
+
+});
+
 
