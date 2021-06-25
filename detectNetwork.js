@@ -94,53 +94,23 @@ var detectNetwork = function(cardNumber) {
 
   }
 
+
   /*
-  China Union Pay - always has a prefix of 622126-622925,
+  China UnionPay always has a prefix of 622126-622925,
   624-626, or 6282-6288 and a length of 16-19.
   */
 
-  var length = cardNumber.length;
+  for (var prefix = 622126; prefix <= 622925; prefix++) {
 
-  var getCut = function(start, end) {
+    for (var length = 16; length <= 19; length++) {
 
-    cardNumber.slice(start, end);
+      if (cardNumber.slice(0, 6) === prefix.toString()) {
 
-  };
+        if (cardNumber.length >= 16 && cardNumber.length <= 19) {
 
+          return 'China Union Pay';
 
-  if (length === 16 || length === 17 || length === 18 || length === 19) {
-
-    for (var prefix = 622126; prefix <= 622925; prefix++) {
-
-      prefix.toString();
-
-      if (getCut(0, 6) === prefix) {
-
-        return 'China Union Pay';
-
-      }
-
-    }
-
-    for (var pre2 = 624; pre2 <= 626; pre2++) {
-
-      pre2.toString();
-
-      if (getCut(0, 3) === pre2) {
-
-        return 'China Union Pay';
-
-      }
-
-    }
-
-    for (var pre3 = 6282; pre2 <= 6288; pre3++) {
-
-      pre3.toString();
-
-      if (getCut(0, 4) === pre3) {
-
-        return 'China Union Pay';
+        }
 
       }
 
@@ -148,12 +118,7 @@ var detectNetwork = function(cardNumber) {
 
   }
 
-
 };
-
-
-
-
 
 
 var maestro = function() {
@@ -181,60 +146,9 @@ var maestro = function() {
 };
 
 
-var cup = function() {
-
-/*
-China Union Pay - always has a prefix of 622126-622925,
-624-626, or 6282-6288 and a length of 16-19.
-*/
-
-  var suffix1 = '111111111'; // length is 9
-  var ccn, ccn2, ccn3;
-
-  for (var prefix = 622126; prefix <= 622925; prefix++) {
-
-    for (var length = 16; length <= 19; length++) {
-
-      suffix1 += '1';
-      ccn = prefix.toString() + suffix1;
-      detectNetwork(ccn);
-      console.log(ccn);
-
-    }
-
-  }
-
-  var suffix2 = '111111111111';
-
-  for (var prefix = 624; prefix <= 626; prefix++) {
-
-    for (var length = 16; length <= 19; length++) {
-
-      suffix2 += '1';
-      ccn2 += prefix.toString() + suffix2;
-      detectNetwork(ccn2);
-      console.log(detectNetwork(ccn2));
-
-    }
-
-  }
-
-  var suffix3 = '11111111111'; //length is 11
-
-  for (var prefix = 6282; prefix <= 6288; prefix++) {
-
-    for (var length = 16; length <= 19; length++) {
-
-      suffix3 += '1';
-      ccn += prefix.toString + suffix3;
-      detectNetwork(ccn3);
-      console.log(ccn3);
-
-    }
-
-  }
 
 
-};
+
+
 
 

@@ -214,20 +214,41 @@ describe('Maestro', function() {
 
 });
 
+/*
+China UnionPay always has a prefix of 622126-622925,
+624-626, or 6282-6288 and a length of 16-19.
+*/
 
-describe ('China Union Pay', function() {
+describe('China Union Pay', function() {
 
   var assert = chai.assert;
 
-  (function() {
+  var suffix1 = '111111111'; // length is 9
 
-    it ('has the prefix test');
+  var ccn, ccn2, ccn3;
 
-  })();
+  for (var prefix = 622126; prefix <= 622925; prefix++) {
+
+    for (var length = 16; length <= 19; length++) {
+
+      (function (currPre, currLength, currSuff) {
+
+        currSuff += '1';
+
+        ccn = currPre.toString() + currSuff;
+
+        it('has a prefix of ' + currPre + ' and a length of ' + currLength, function() {
+
+          assert(detectNetwork(ccn) === 'China Union Pay');
+
+        });
+
+      })(prefix, length, suffix1);
+
+    }
+
+  }
 
 });
-
-
-
 
 
