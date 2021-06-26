@@ -31,30 +31,91 @@ var detectNetwork = function(cardNumber) {
 
   if (cardNumber.slice(0, 1) === '4') {
 
-    if (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19) {
-      return 'Visa';
-    }
-
     /*
     Switch always has a prefix of 4903,
     4905, 4911, 4936, 564182, 633110,
     6333, or 6759 and a length of 16, 18, or 19
     */
 
+    var slice1 = cardNumber.slice(1, 4);
+
     if (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) {
 
+      if (slice1 === '903' || slice1 === '905' || slice1 === '911' || slice1 === '936') {
 
+        return 'Switch';
+
+      }
+
+    }
+
+    if (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19) {
+      return 'Visa';
+    }
+
+
+  }
+
+
+   /*
+    Switch always has a prefix of 4903,
+    4905, 4911, 4936, 564182, 633110,
+    6333, or 6759 and a length of 16, 18, or 19
+    */
+
+
+  if (cardNumber.slice(0, 6) === '564182') {
+
+    if (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) {
+
+      return 'Switch';
 
     }
 
   }
 
+
+
   for (var a = 51; a < 56; a++) {
+
     if (cardNumber.slice(0, 2) === a.toString() ) {
+
       if (cardNumber.length === 16) {
         return 'MasterCard';
       }
     }
+  }
+
+
+  if (cardNumber.slice(0, 6) === '633110') {
+
+    if (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) {
+
+      return 'Switch';
+
+    }
+
+  }
+
+  if (cardNumber.slice(0, 4) === '6333') {
+
+    if (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) {
+
+      return 'Switch';
+
+    }
+
+  }
+
+
+  if (cardNumber.slice(0, 4) === '6759') {
+
+    if (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) {
+
+      return 'Switch';
+
+    }
+
   }
 
 
