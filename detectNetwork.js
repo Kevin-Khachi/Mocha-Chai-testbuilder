@@ -147,7 +147,7 @@ var detectNetwork = function(cardNumber) {
   }
 
 
-  //Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
+  //Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19 .
 
   var prefixes = ['5018', '5020', '5038', '6304'];
 

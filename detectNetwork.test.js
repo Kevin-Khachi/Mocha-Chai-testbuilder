@@ -28,7 +28,7 @@ describe('Introduction to Mocha Tests - READ ME FIRST', function() {
     return even(10) === true;
   });
 
-  // In tests, we want to compare the expected behavior to the actual behavior.
+  // In tests, we want to  compare the expected behavior to the actual behavior.
   // A test should only fail if the expected behavior doesn't match the actual.
   it('Throws an error when expected behavior does not match actual behavior', function() {
     var even = function(num) {
