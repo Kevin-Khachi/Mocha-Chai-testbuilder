@@ -183,7 +183,7 @@ var detectNetwork = function(cardNumber) {
 
         if (cardNumber.length >= 16 && cardNumber.length <= 19) {
 
-          return 'China Union Pay';
+          return 'China UnionPay';
 
         }
 
@@ -202,7 +202,7 @@ var detectNetwork = function(cardNumber) {
 
         if (cardNumber.length >= 16 && cardNumber.length <= 19) {
 
-          return 'China Union Pay';
+          return 'China UnionPay';
 
         }
 
@@ -220,7 +220,7 @@ var detectNetwork = function(cardNumber) {
 
         if (cardNumber.length >= 16 && cardNumber.length <= 19) {
 
-          return 'China Union Pay';
+          return 'China UnionPay';
 
         }
 
@@ -265,7 +265,7 @@ var maestro = function() {
 var cup = function() {
 
 
-  var sufix1, ccn, ccn2, ccn3;
+  var sufix1, ccn, ccn2, ccn3, index;
 
   for (var prefix = 622126; prefix <= 622925; prefix++) {
 
@@ -337,7 +337,85 @@ var cup = function() {
 
   }
 
+
+
+
+
+  var prefixes = ['490311111111111', '490511111111111', '491111111111111', '493611111111111',
+    '564182111111111', '633110111111111', '633311111111111', '675911111111111'];
+
+
+  for (var a = 0; a < prefixes.length; a++) {
+
+    index = prefixes[a];
+
+    for (var length = 16; length <= 19; length++ ) {
+
+      index += '1';
+
+      console.log(index + ' Length: ' + length);
+
+      if (length === 17) {
+
+        continue;
+
+      }
+
+      (function (ccn) {
+
+        detectNetwork(ccn);
+
+      })(index);
+
+    }
+
+  }
+
+
 };
+
+/*
+Switch always has a prefix of 4903,
+4905, 4911, 4936, 564182, 633110,
+6333, or 6759 and a length of 16, 18, or 19
+*/
+
+var switchTest = function() {
+
+  var prefixes = ['490311111111111', '490511111111111', '491111111111111', '493611111111111',
+    '564182111111111', '633110111111111', '633311111111111', '675911111111111'];
+
+  var index;
+
+  for (var a = 0; a < prefixes.length; a++) {
+
+    index = prefixes[a];
+
+    for (var length = 16; length <= 19; length++ ) {
+
+      index += '1';
+
+      console.log(index + ' Length: ' + length);
+
+      if (length === 17) {
+
+        continue;
+
+      }
+
+      (function (ccn) {
+
+        detectNetwork(ccn);
+
+      })(index);
+
+    }
+
+  }
+
+};
+
+
 
 
 

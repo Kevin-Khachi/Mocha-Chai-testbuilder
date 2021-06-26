@@ -219,7 +219,7 @@ China UnionPay always has a prefix of 622126-622925,
 624-626, or 6282-6288 and a length of 16-19.
 */
 
-describe('China Union Pay', function() {
+describe('China UnionPay', function() {
 
   var assert = chai.assert;
 
@@ -239,7 +239,7 @@ describe('China Union Pay', function() {
 
         it('has a prefix of ' + currPre + ' and a length of ' + currLength, function() {
 
-          assert(detectNetwork(ccn) === 'China Union Pay');
+          assert(detectNetwork(ccn) === 'China UnionPay');
 
         });
 
@@ -263,7 +263,7 @@ describe('China Union Pay', function() {
 
         it('has a prefix of ' + currPre + ' and a length of ' + currLength, function() {
 
-          assert(detectNetwork(ccn2) === 'China Union Pay');
+          assert(detectNetwork(ccn2) === 'China UnionPay');
 
         });
 
@@ -288,7 +288,7 @@ describe('China Union Pay', function() {
 
         it('has a prefix of ' + currPre + ' and a length of ' + currLength, function() {
 
-          assert(detectNetwork(ccn3) === 'China Union Pay');
+          assert(detectNetwork(ccn3) === 'China UnionPay');
 
         });
 
@@ -325,7 +325,7 @@ describe('Switch', function() {
 
       index += '1';
 
-      console.log(index + ' Length: ' + length);
+      //console.log(index + ' Length: ' + length);
 
       if (length === 17) {
 
