@@ -249,6 +249,106 @@ describe('China Union Pay', function() {
 
   }
 
+  var suffix2 = '111111111111111';
+
+  for (var prefix = 624; prefix <= 626; prefix++) {
+
+    for (var length = 16; length <= 19; length++) {
+
+      (function(currPre, currLength, currSuff) {
+
+        currSuff += '1';
+
+        ccn2 = currPre.toString() + currSuff;
+
+        it('has a prefix of ' + currPre + ' and a length of ' + currLength, function() {
+
+          assert(detectNetwork(ccn2) === 'China Union Pay');
+
+        });
+
+      })(prefix, length, suffix2);
+
+
+    }
+
+  }
+
+  var suffix3 = '11111111111111';
+
+  for (var prefix = 6282; prefix <= 6288; prefix++) {
+
+    for (var length = 16; length <= 19; length++) {
+
+      (function(currPre, currLength, currSuff) {
+
+        currSuff += '1';
+
+        ccn3 = currPre.toString() + currSuff;
+
+        it('has a prefix of ' + currPre + ' and a length of ' + currLength, function() {
+
+          assert(detectNetwork(ccn3) === 'China Union Pay');
+
+        });
+
+      })(prefix, length, suffix3);
+
+
+    }
+
+  }
+
 });
+
+/*
+Switch always has a prefix of 4903,
+4905, 4911, 4936, 564182, 633110,
+6333, or 6759 and a length of 16, 18, or 19
+*/
+
+
+describe('Switch', function() {
+
+  var assert = chai.assert;
+
+  var prefixes = ['490311111111111', '490511111111111', '491111111111111', '493611111111111',
+    '564182111111111', '633110111111111', '633311111111111', '675911111111111'];
+
+  var index;
+
+  for (var a = 0; a < prefixes.length; a++) {
+
+    index = prefixes[a];
+
+    for (var length = 16; length <= 19; length++ ) {
+
+      index += '1';
+
+      console.log(index + ' Length: ' + length);
+
+      if (length === 17) {
+
+        continue;
+
+      }
+
+      (function (ccn) {
+
+        it('has a prefix of ' + ccn + ' and a length of ' + length, function() {
+
+          assert(detectNetwork(ccn) === 'Switch');
+
+        });
+
+      })(index);
+
+    }
+
+  }
+
+});
+
+
 
 

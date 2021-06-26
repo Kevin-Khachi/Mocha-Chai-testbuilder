@@ -30,9 +30,23 @@ var detectNetwork = function(cardNumber) {
   }
 
   if (cardNumber.slice(0, 1) === '4') {
+
     if (cardNumber.length === 13 || cardNumber.length === 16 || cardNumber.length === 19) {
       return 'Visa';
     }
+
+    /*
+    Switch always has a prefix of 4903,
+    4905, 4911, 4936, 564182, 633110,
+    6333, or 6759 and a length of 16, 18, or 19
+    */
+
+    if (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) {
+
+
+
+    }
+
   }
 
   for (var a = 51; a < 56; a++) {
@@ -118,6 +132,44 @@ var detectNetwork = function(cardNumber) {
 
   }
 
+
+  for (var prefix = 624; prefix <= 626; prefix++) {
+
+    for (var length = 16; length <= 19; length++) {
+
+      if (cardNumber.slice(0, 3) === prefix.toString()) {
+
+        if (cardNumber.length >= 16 && cardNumber.length <= 19) {
+
+          return 'China Union Pay';
+
+        }
+
+      }
+
+    }
+
+  }
+
+  for (var prefix = 6282; prefix <= 6288; prefix++) {
+
+    for (var length = 16; length <= 19; length++) {
+
+      if (cardNumber.slice(0, 4) === prefix.toString()) {
+
+        if (cardNumber.length >= 16 && cardNumber.length <= 19) {
+
+          return 'China Union Pay';
+
+        }
+
+      }
+
+    }
+
+  }
+
+
 };
 
 
@@ -144,6 +196,89 @@ var maestro = function() {
   console.log('COMPLETED');
 
 };
+
+
+
+
+
+var cup = function() {
+
+
+  var sufix1, ccn, ccn2, ccn3;
+
+  for (var prefix = 622126; prefix <= 622925; prefix++) {
+
+    suffix1 = '111111111';
+
+    for (var length = 16; length <= 19; length++) {
+
+      (function(currPre, currSuff) {
+
+        suffix1 += '1';
+
+        ccn = currPre.toString() + suffix1;
+
+        detectNetwork(ccn);
+
+        console.log(ccn);
+
+      })(prefix);
+
+
+    }
+
+  }
+
+
+
+  for (var prefix = 624; prefix <= 626; prefix++) {
+
+    suffix1 = '111111111111'; //length is 15
+
+    for (var length = 16; length <= 19; length++) {
+
+      (function (currPrefix) {
+
+        suffix1 += '1';
+
+        ccn2 = currPrefix.toString() + suffix1;
+
+        detectNetwork(ccn2);
+
+        console.log(ccn2 + ' Length: ' + length);
+
+      })(prefix);
+
+    }
+
+  }
+
+
+  for (var prefix = 6282; prefix <= 6288; prefix++) {
+
+    suffix1 = '11111111111'; //length is 14
+
+    for (var length = 16; length <= 19; length++) {
+
+      (function (currPrefix) {
+
+        suffix1 += '1';
+
+        ccn2 = currPrefix.toString() + suffix1;
+
+        detectNetwork(ccn2);
+
+        console.log(ccn2 + ' Length: ' + length);
+
+      })(prefix);
+
+    }
+
+  }
+
+};
+
+
 
 
 
