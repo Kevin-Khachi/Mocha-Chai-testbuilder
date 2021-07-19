@@ -234,6 +234,7 @@ var detectNetwork = function(cardNumber) {
 };
 
 
+
 var maestro = function() {
 
   var prefixes = ['5018', '5020', '5038', '6304'];
@@ -382,8 +383,8 @@ Switch always has a prefix of 4903,
 
 var switchTest = function() {
 
-  var prefixes = ['490311111111111', '490511111111111', '491111111111111', '493611111111111',
-    '564182111111111', '633110111111111', '633311111111111', '675911111111111'];
+  var prefixes = ['490311111111', '490511111111', '49111111111', '493611111111',
+    '564182111111', '633110111111', '633311111111', '675911111111'];
 
   var index;
 
@@ -391,7 +392,7 @@ var switchTest = function() {
 
     index = prefixes[a];
 
-    for (var length = 16; length <= 19; length++ ) {
+    for (var length = 13; length <= 19; length++ ) {
 
       index += '1';
 
@@ -416,6 +417,17 @@ var switchTest = function() {
 };
 
 
+
+// detectNetwork('34345678901234');
+// detectNetwork('37345678901234');
+// detectNetwork('373456789012345');
+// detectNetwork('343456789012345');
+// detectNetwork('4434567890123');
+// detectNetwork('4434567890123456');
+// detectNetwork('4434567890123456789');
+// maestro();
+// cup();
+// switchTest();
 
 
 

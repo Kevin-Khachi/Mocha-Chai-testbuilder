@@ -7,6 +7,9 @@
 // other places in this file where you'll replace the FILL_ME_IN with a
 // different value.
 var FILL_ME_IN = 'Fill this value in';
+
+
+
 describe('Introduction to Mocha Tests - READ ME FIRST', function() {
   // A Mocha test is just a function!
   // If the function throws an error when run, it fails.
@@ -202,7 +205,7 @@ describe('Maestro', function() {
 
         it ('has a prefix of ' + testPrefix + ' and a length of ' + testLength, function() {
 
-          assert(detectNetwork(ccn) === 'Maestro');
+          assert(detectNetwork(testPrefix.padEnd(testLength, '1')) === 'Maestro');
 
         });
 
@@ -229,6 +232,9 @@ describe('China UnionPay', function() {
 
   for (var prefix = 622126; prefix <= 622925; prefix++) {
 
+    var pre = prefix.toString();
+    console.log(pre);
+
     for (var length = 16; length <= 19; length++) {
 
       (function (currPre, currLength, currSuff) {
@@ -239,11 +245,11 @@ describe('China UnionPay', function() {
 
         it('has a prefix of ' + currPre + ' and a length of ' + currLength, function() {
 
-          assert(detectNetwork(ccn) === 'China UnionPay');
+          assert(detectNetwork(currPre.padEnd(currLength, '1')) === 'China UnionPay');
 
         });
 
-      })(prefix, length, suffix1);
+      })(pre, length, suffix1);
 
     }
 
@@ -253,7 +259,10 @@ describe('China UnionPay', function() {
 
   for (var prefix = 624; prefix <= 626; prefix++) {
 
+    var pre = prefix.toString();
+
     for (var length = 16; length <= 19; length++) {
+
 
       (function(currPre, currLength, currSuff) {
 
@@ -263,11 +272,11 @@ describe('China UnionPay', function() {
 
         it('has a prefix of ' + currPre + ' and a length of ' + currLength, function() {
 
-          assert(detectNetwork(ccn2) === 'China UnionPay');
+          assert(detectNetwork(currPre.padEnd(currLength, '1')) === 'China UnionPay');
 
         });
 
-      })(prefix, length, suffix2);
+      })(pre, length, suffix2);
 
 
     }
@@ -277,6 +286,8 @@ describe('China UnionPay', function() {
   var suffix3 = '11111111111111';
 
   for (var prefix = 6282; prefix <= 6288; prefix++) {
+
+    var pre = prefix.toString();
 
     for (var length = 16; length <= 19; length++) {
 
@@ -288,11 +299,11 @@ describe('China UnionPay', function() {
 
         it('has a prefix of ' + currPre + ' and a length of ' + currLength, function() {
 
-          assert(detectNetwork(ccn3) === 'China UnionPay');
+          assert(detectNetwork(currPre.padEnd(currLength, '1')) === 'China UnionPay');
 
         });
 
-      })(prefix, length, suffix3);
+      })(pre, length, suffix3);
 
 
     }
@@ -333,15 +344,15 @@ describe('Switch', function() {
 
       }
 
-      (function (ccn) {
+      (function (ccn, currLength) {
 
         it('has a prefix of ' + ccn + ' and a length of ' + length, function() {
 
-          assert(detectNetwork(ccn) === 'Switch');
+          assert(detectNetwork(ccn.padEnd(currLength, '1')) === 'Switch');
 
         });
 
-      })(index);
+      })(index, length);
 
     }
 
