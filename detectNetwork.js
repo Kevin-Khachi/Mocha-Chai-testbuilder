@@ -76,14 +76,13 @@ var detectNetwork = function(cardNumber) {
 
 
 
-  for (var a = 51; a < 56; a++) {
 
-    if (cardNumber.slice(0, 2) === a.toString() ) {
+  if (cardNumber.slice(0, 2) >= 51 && cardNumber.slice(0, 2) <= 56) {
 
-      if (cardNumber.length === 16) {
-        return 'MasterCard';
-      }
+    if (cardNumber.length === 16) {
+      return 'MasterCard';
     }
+
   }
 
 
@@ -130,17 +129,12 @@ var detectNetwork = function(cardNumber) {
     }
   }
 
-  var disPrefix = 644;
 
-  for (disPrefix; disPrefix < 650; disPrefix++) {
+  if (cardNumber.slice(0, 3) >= 644 && cardNumber.slice(0, 3)) {
 
-    if (cardNumber.slice(0, 3) === disPrefix.toString()) {
+    if (cardNumber.length === 16 || cardNumber.length === 19) {
 
-      if (cardNumber.length === 16 || cardNumber.length === 19) {
-
-        return 'Discover';
-
-      }
+      return 'Discover';
 
     }
 
@@ -155,17 +149,15 @@ var detectNetwork = function(cardNumber) {
 
     if (cardNumber.slice(0, 4) === prefixes[preIndex]) {
 
-      for (var length = 12; length < 20; length++) {
+      if (cardNumber.length >= 12 && cardNumber.length <= 19) {
 
-        if (cardNumber.length === length) {
-
-          return 'Maestro';
-
-        }
+        return 'Maestro';
 
       }
 
     }
+
+
 
   }
 
@@ -175,56 +167,32 @@ var detectNetwork = function(cardNumber) {
   624-626, or 6282-6288 and a length of 16-19.
   */
 
-  for (var prefix = 622126; prefix <= 622925; prefix++) {
+  if (cardNumber.slice(0, 6) <= 622925 && cardNumber.slice(0, 6) >= 622126) {
 
-    for (var length = 16; length <= 19; length++) {
+    if (cardNumber.length >= 16 && cardNumber.length <= 19) {
 
-      if (cardNumber.slice(0, 6) === prefix.toString()) {
-
-        if (cardNumber.length >= 16 && cardNumber.length <= 19) {
-
-          return 'China UnionPay';
-
-        }
-
-      }
+      return 'China UnionPay';
 
     }
 
   }
 
 
-  for (var prefix = 624; prefix <= 626; prefix++) {
+  if (cardNumber.slice(0, 3) >= 624 && cardNumber.slice(0, 3) <= 626) {
 
-    for (var length = 16; length <= 19; length++) {
+    if (cardNumber.length >= 16 && cardNumber.length <= 19) {
 
-      if (cardNumber.slice(0, 3) === prefix.toString()) {
-
-        if (cardNumber.length >= 16 && cardNumber.length <= 19) {
-
-          return 'China UnionPay';
-
-        }
-
-      }
+      return 'China UnionPay';
 
     }
 
   }
 
-  for (var prefix = 6282; prefix <= 6288; prefix++) {
+  if (cardNumber.slice(0, 4) >= 6282 && cardNumber.slice(0, 4) <= 6288) {
 
-    for (var length = 16; length <= 19; length++) {
+    if (cardNumber.length >= 16 && cardNumber.length <= 19) {
 
-      if (cardNumber.slice(0, 4) === prefix.toString()) {
-
-        if (cardNumber.length >= 16 && cardNumber.length <= 19) {
-
-          return 'China UnionPay';
-
-        }
-
-      }
+      return 'China UnionPay';
 
     }
 
@@ -235,186 +203,186 @@ var detectNetwork = function(cardNumber) {
 
 
 
-var maestro = function() {
+// var maestro = function() {
 
-  var prefixes = ['5018', '5020', '5038', '6304'];
+//   var prefixes = ['5018', '5020', '5038', '6304'];
 
-  for (var a = 0; a < prefixes.length; a++) {
+//   for (var a = 0; a < prefixes.length; a++) {
 
-    var ccn = prefixes[a] + '5678901'; //length is 11
+//     var ccn = prefixes[a] + '5678901'; //length is 11
 
-    for (var lengths = 12; lengths <= 19; lengths++) {
+//     for (var lengths = 12; lengths <= 19; lengths++) {
 
-      ccn += '1';
+//       ccn += '1';
 
-      detectNetwork(ccn);
+//       detectNetwork(ccn);
 
-      console.log(ccn + ' ' + ccn.length);
+//       console.log(ccn + ' ' + ccn.length);
 
-    }
+//     }
 
-  }
+//   }
 
-  console.log('COMPLETED');
+//   console.log('COMPLETED');
 
-};
+// };
 
 
 
 
 
-var cup = function() {
+// var cup = function() {
 
 
-  var sufix1, ccn, ccn2, ccn3, index;
+//   var sufix1, ccn, ccn2, ccn3, index;
 
-  for (var prefix = 622126; prefix <= 622925; prefix++) {
+//   for (var prefix = 622126; prefix <= 622925; prefix++) {
 
-    suffix1 = '111111111';
+//     suffix1 = '111111111';
 
-    for (var length = 16; length <= 19; length++) {
+//     for (var length = 16; length <= 19; length++) {
 
-      (function(currPre, currSuff) {
+//       (function(currPre, currSuff) {
 
-        suffix1 += '1';
+//         suffix1 += '1';
 
-        ccn = currPre.toString() + suffix1;
+//         ccn = currPre.toString() + suffix1;
 
-        detectNetwork(ccn);
+//         detectNetwork(ccn);
 
-        console.log(ccn);
+//         console.log(ccn);
 
-      })(prefix);
+//       })(prefix);
 
 
-    }
+//     }
 
-  }
+//   }
 
 
 
-  for (var prefix = 624; prefix <= 626; prefix++) {
+//   for (var prefix = 624; prefix <= 626; prefix++) {
 
-    suffix1 = '111111111111'; //length is 15
+//     suffix1 = '111111111111'; //length is 15
 
-    for (var length = 16; length <= 19; length++) {
+//     for (var length = 16; length <= 19; length++) {
 
-      (function (currPrefix) {
+//       (function (currPrefix) {
 
-        suffix1 += '1';
+//         suffix1 += '1';
 
-        ccn2 = currPrefix.toString() + suffix1;
+//         ccn2 = currPrefix.toString() + suffix1;
 
-        detectNetwork(ccn2);
+//         detectNetwork(ccn2);
 
-        console.log(ccn2 + ' Length: ' + length);
+//         console.log(ccn2 + ' Length: ' + length);
 
-      })(prefix);
+//       })(prefix);
 
-    }
+//     }
 
-  }
+//   }
 
 
-  for (var prefix = 6282; prefix <= 6288; prefix++) {
+//   for (var prefix = 6282; prefix <= 6288; prefix++) {
 
-    suffix1 = '11111111111'; //length is 14
+//     suffix1 = '11111111111'; //length is 14
 
-    for (var length = 16; length <= 19; length++) {
+//     for (var length = 16; length <= 19; length++) {
 
-      (function (currPrefix) {
+//       (function (currPrefix) {
 
-        suffix1 += '1';
+//         suffix1 += '1';
 
-        ccn2 = currPrefix.toString() + suffix1;
+//         ccn2 = currPrefix.toString() + suffix1;
 
-        detectNetwork(ccn2);
+//         detectNetwork(ccn2);
 
-        console.log(ccn2 + ' Length: ' + length);
+//         console.log(ccn2 + ' Length: ' + length);
 
-      })(prefix);
+//       })(prefix);
 
-    }
+//     }
 
-  }
+//   }
 
 
 
 
 
-  var prefixes = ['490311111111111', '490511111111111', '491111111111111', '493611111111111',
-    '564182111111111', '633110111111111', '633311111111111', '675911111111111'];
+//   var prefixes = ['490311111111111', '490511111111111', '491111111111111', '493611111111111',
+//     '564182111111111', '633110111111111', '633311111111111', '675911111111111'];
 
 
-  for (var a = 0; a < prefixes.length; a++) {
+//   for (var a = 0; a < prefixes.length; a++) {
 
-    index = prefixes[a];
+//     index = prefixes[a];
 
-    for (var length = 16; length <= 19; length++ ) {
+//     for (var length = 16; length <= 19; length++ ) {
 
-      index += '1';
+//       index += '1';
 
-      console.log(index + ' Length: ' + length);
+//       console.log(index + ' Length: ' + length);
 
-      if (length === 17) {
+//       if (length === 17) {
 
-        continue;
+//         continue;
 
-      }
+//       }
 
-      (function (ccn) {
+//       (function (ccn) {
 
-        detectNetwork(ccn);
+//         detectNetwork(ccn);
 
-      })(index);
+//       })(index);
 
-    }
+//     }
 
-  }
+//   }
 
 
-};
+// };
 
-/*
-Switch always has a prefix of 4903,
-4905, 4911, 4936, 564182, 633110,
-6333, or 6759 and a length of 16, 18, or 19
-*/
+// /*
+// Switch always has a prefix of 4903,
+// 4905, 4911, 4936, 564182, 633110,
+// 6333, or 6759 and a length of 16, 18, or 19
+// */
 
-var switchTest = function() {
+// var switchTest = function() {
 
-  var prefixes = ['490311111111', '490511111111', '49111111111', '493611111111',
-    '564182111111', '633110111111', '633311111111', '675911111111'];
+//   var prefixes = ['490311111111', '490511111111', '49111111111', '493611111111',
+//     '564182111111', '633110111111', '633311111111', '675911111111'];
 
-  var index;
+//   var index;
 
-  for (var a = 0; a < prefixes.length; a++) {
+//   for (var a = 0; a < prefixes.length; a++) {
 
-    index = prefixes[a];
+//     index = prefixes[a];
 
-    for (var length = 13; length <= 19; length++ ) {
+//     for (var length = 13; length <= 19; length++ ) {
 
-      index += '1';
+//       index += '1';
 
-      console.log(index + ' Length: ' + length);
+//       console.log(index + ' Length: ' + length);
 
-      if (length === 17) {
+//       if (length === 17) {
 
-        continue;
+//         continue;
 
-      }
+//       }
 
-      (function (ccn) {
+//       (function (ccn) {
 
-        detectNetwork(ccn);
+//         detectNetwork(ccn);
 
-      })(index);
+//       })(index);
 
-    }
+//     }
 
-  }
+//   }
 
-};
+// };
 
 
 
