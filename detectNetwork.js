@@ -9,7 +9,7 @@
 
 // Warning: Regular Expressions (RegEx) are NOT ALLOWED on this assignment!
 
-var detectNetwork = function(cardNumber) {
+const detectNetwork = function(cardNumber) {
   // Note: `cardNumber` will always be a string
   // The Diner's Club network always starts with a 38 or 39 and is 14 digits long
   // The American Express network always starts with a 34 or 37 and is 15 digits long
@@ -37,7 +37,7 @@ var detectNetwork = function(cardNumber) {
     6333, or 6759 and a length of 16, 18, or 19
     */
 
-    var slice1 = cardNumber.slice(1, 4);
+    const slice1 = cardNumber.slice(1, 4);
 
     if (cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19) {
 
@@ -143,9 +143,9 @@ var detectNetwork = function(cardNumber) {
 
   //Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19 .
 
-  var prefixes = ['5018', '5020', '5038', '6304'];
+  const prefixes = ['5018', '5020', '5038', '6304'];
 
-  for (var preIndex = 0; preIndex < 4; preIndex++) {
+  for (const preIndex = 0; preIndex < 4; preIndex++) {
 
     if (cardNumber.slice(0, 4) === prefixes[preIndex]) {
 
@@ -200,202 +200,6 @@ var detectNetwork = function(cardNumber) {
 
 
 };
-
-
-
-// var maestro = function() {
-
-//   var prefixes = ['5018', '5020', '5038', '6304'];
-
-//   for (var a = 0; a < prefixes.length; a++) {
-
-//     var ccn = prefixes[a] + '5678901'; //length is 11
-
-//     for (var lengths = 12; lengths <= 19; lengths++) {
-
-//       ccn += '1';
-
-//       detectNetwork(ccn);
-
-//       console.log(ccn + ' ' + ccn.length);
-
-//     }
-
-//   }
-
-//   console.log('COMPLETED');
-
-// };
-
-
-
-
-
-// var cup = function() {
-
-
-//   var sufix1, ccn, ccn2, ccn3, index;
-
-//   for (var prefix = 622126; prefix <= 622925; prefix++) {
-
-//     suffix1 = '111111111';
-
-//     for (var length = 16; length <= 19; length++) {
-
-//       (function(currPre, currSuff) {
-
-//         suffix1 += '1';
-
-//         ccn = currPre.toString() + suffix1;
-
-//         detectNetwork(ccn);
-
-//         console.log(ccn);
-
-//       })(prefix);
-
-
-//     }
-
-//   }
-
-
-
-//   for (var prefix = 624; prefix <= 626; prefix++) {
-
-//     suffix1 = '111111111111'; //length is 15
-
-//     for (var length = 16; length <= 19; length++) {
-
-//       (function (currPrefix) {
-
-//         suffix1 += '1';
-
-//         ccn2 = currPrefix.toString() + suffix1;
-
-//         detectNetwork(ccn2);
-
-//         console.log(ccn2 + ' Length: ' + length);
-
-//       })(prefix);
-
-//     }
-
-//   }
-
-
-//   for (var prefix = 6282; prefix <= 6288; prefix++) {
-
-//     suffix1 = '11111111111'; //length is 14
-
-//     for (var length = 16; length <= 19; length++) {
-
-//       (function (currPrefix) {
-
-//         suffix1 += '1';
-
-//         ccn2 = currPrefix.toString() + suffix1;
-
-//         detectNetwork(ccn2);
-
-//         console.log(ccn2 + ' Length: ' + length);
-
-//       })(prefix);
-
-//     }
-
-//   }
-
-
-
-
-
-//   var prefixes = ['490311111111111', '490511111111111', '491111111111111', '493611111111111',
-//     '564182111111111', '633110111111111', '633311111111111', '675911111111111'];
-
-
-//   for (var a = 0; a < prefixes.length; a++) {
-
-//     index = prefixes[a];
-
-//     for (var length = 16; length <= 19; length++ ) {
-
-//       index += '1';
-
-//       console.log(index + ' Length: ' + length);
-
-//       if (length === 17) {
-
-//         continue;
-
-//       }
-
-//       (function (ccn) {
-
-//         detectNetwork(ccn);
-
-//       })(index);
-
-//     }
-
-//   }
-
-
-// };
-
-// /*
-// Switch always has a prefix of 4903,
-// 4905, 4911, 4936, 564182, 633110,
-// 6333, or 6759 and a length of 16, 18, or 19
-// */
-
-// var switchTest = function() {
-
-//   var prefixes = ['490311111111', '490511111111', '49111111111', '493611111111',
-//     '564182111111', '633110111111', '633311111111', '675911111111'];
-
-//   var index;
-
-//   for (var a = 0; a < prefixes.length; a++) {
-
-//     index = prefixes[a];
-
-//     for (var length = 13; length <= 19; length++ ) {
-
-//       index += '1';
-
-//       console.log(index + ' Length: ' + length);
-
-//       if (length === 17) {
-
-//         continue;
-
-//       }
-
-//       (function (ccn) {
-
-//         detectNetwork(ccn);
-
-//       })(index);
-
-//     }
-
-//   }
-
-// };
-
-
-
-// detectNetwork('34345678901234');
-// detectNetwork('37345678901234');
-// detectNetwork('373456789012345');
-// detectNetwork('343456789012345');
-// detectNetwork('4434567890123');
-// detectNetwork('4434567890123456');
-// detectNetwork('4434567890123456789');
-// maestro();
-// cup();
-// switchTest();
 
 
 
